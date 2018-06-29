@@ -1,8 +1,11 @@
 import React from "react";
 import color from "./Square/Color"
 import label from "./Square/Label";
+import Piece from "../Piece";
+import imageMapper from "../Piece/ImageMapper";
 
 let i = null;
+let p = 'wP';
 
 export default class Square extends React.Component {
   constructor(props) {
@@ -15,7 +18,9 @@ export default class Square extends React.Component {
     return (
         <div>
           <button className={color(i)} >
-            {label(i)}
+            {/*<Piece name={p} />*/}
+            {/*{label(i)}*/}
+            <img src={imageMapper(p)} className={'piece'} />
           </button>
         </div>
       );

@@ -30,9 +30,6 @@ const IMAGES = {
 }
 
 function image(piece) {
-  console.log("ImageLoader: piece is:" + piece);
-  console.log("ImageLoader: " + IMAGES[piece]);
-  console.log("ImageLoader: " + IMAGES.test);
   return IMAGES[piece];
 }
 

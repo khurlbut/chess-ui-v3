@@ -1,5 +1,8 @@
 import React from "react";
 import imageMapper from "./Piece/ImageMapper";
+import color from "./Board/Square/Color";
+
+let style="piece";
 
 export default class Piece extends React.Component {
   constructor(props) {
@@ -17,6 +20,6 @@ export default class Piece extends React.Component {
   }
 
   render() {
-    return( <img src={this.image} /> )
+    return( <img src={this.image} className={style} /> )
   }
 }
