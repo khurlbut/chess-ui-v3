@@ -1,9 +1,8 @@
 import React from "react";
 import Board from "./Board";
 import Header from "./Header";
-// import img from "../../../images/Queen-B.png"
-import img from "Images/Queen-B.png"
-import Piece from "./Piece";
+
+const pieces = "wR,wN,wB,wQ,wK,wB,wN,wR,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
 
 export default class Layout extends React.Component {
   constructor() {
@@ -16,12 +15,9 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div>
-        <img src={img} />
-        <img src={img} />
         <hr />
-        <Piece name={"bR"} />
         <Header title={this.state.title} />
-        <Board />
+        <Board pieces={pieces}/>
       </div>
     );
   }

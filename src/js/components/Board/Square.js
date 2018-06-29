@@ -1,26 +1,23 @@
 import React from "react";
 import color from "./Square/Color"
-import label from "./Square/Label";
-import Piece from "../Piece";
-import imageMapper from "../Piece/ImageMapper";
+import image from "../Piece/ImageMapper";
 
 let i = null;
-let p = 'wP';
+let p = null;
 
 export default class Square extends React.Component {
   constructor(props) {
     super(props);
     this.validateProps(props);
     i = props.boardIndex;
+    p = props.piece;
   }
 
   render() {
     return (
         <div>
           <button className={color(i)} >
-            {/*<Piece name={p} />*/}
-            {/*{label(i)}*/}
-            <img src={imageMapper(p)} className={'piece'} />
+            <img src={image(p)} className={'piece'} />
           </button>
         </div>
       );

@@ -13,7 +13,6 @@ import BlackKing from 'Images/King-B.png'
 import EmptySquare from 'Images/EmptySquare.png'
 
 const IMAGES = {
-  'test': "test",
   'wP': WhitePawn,
   'bP': BlackPawn,
   'wB': WhiteBishop,
@@ -30,7 +29,11 @@ const IMAGES = {
 }
 
 function image(piece) {
-  return IMAGES[piece];
+  let image = IMAGES[piece];
+  if (image === undefined) {
+    return IMAGES.empty;
+  }
+  return image;
 }
 
 module.exports = (piece) => image(piece);
