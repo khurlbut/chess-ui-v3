@@ -11,6 +11,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js'
   },
+  resolve: {
+    alias: {
+      Images: path.resolve(__dirname, 'images/'),
+    }
+  },
   module: {
     rules: [
       {
@@ -23,6 +28,17 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+      },
+      {
+        test: /\.(jpg|png|gif|svg|pdf|ico)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name]-[hash:8].[ext]'
+            },
+          },
+        ]
       }
     ]
   },

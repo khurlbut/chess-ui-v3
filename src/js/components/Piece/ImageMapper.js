@@ -1,16 +1,16 @@
-import WhitePawn from './../../../../images/Pawn-W.png'
-import WhiteRook from './../../../../images/Rook-W.png'
-import WhiteKnight from './../../../../images/Knight-W.png'
-import WhiteBishop from './../../../../images/Bishop-W.png'
-import WhiteQueen from './../../../../images/Queen-W.png'
-import WhiteKing from './../../../../images/King-W.png'
-import BlackPawn from './../../../../images/Pawn-B.png'
-import BlackRook from './../../../../images/Rook-B.png'
-import BlackKnight from './../../../../images/Knight-B.png'
-import BlackBishop from './../../../../images/Bishop-B.png'
-import BlackQueen from './../../../../images/Queen-B.png'
-import BlackKing from './../../../../images/King-B.png'
-import EmptySquare from './../../../../images/EmptySquare.png'
+import WhitePawn from 'Images/Pawn-W.png'
+import WhiteRook from 'Images/Rook-W.png'
+import WhiteKnight from 'Images/Knight-W.png'
+import WhiteBishop from 'Images/Bishop-W.png'
+import WhiteQueen from 'Images/Queen-W.png'
+import WhiteKing from 'Images/King-W.png'
+import BlackPawn from 'Images/Pawn-B.png'
+import BlackRook from 'Images/Rook-B.png'
+import BlackKnight from 'Images/Knight-B.png'
+import BlackBishop from 'Images/Bishop-B.png'
+import BlackQueen from 'Images/Queen-B.png'
+import BlackKing from 'Images/King-B.png'
+import EmptySquare from 'Images/EmptySquare.png'
 
 const IMAGES = {
   'wP': WhitePawn,
@@ -29,7 +29,11 @@ const IMAGES = {
 }
 
 function image(piece) {
-  return IMAGES.piece;
+  let image = IMAGES[piece];
+  if (image === undefined) {
+    return IMAGES.empty;
+  }
+  return image;
 }
 
 module.exports = (piece) => image(piece);
