@@ -4,6 +4,11 @@ import image from "./Piece/ImageMapper";
 
 const squares = "wR,wN,wB,wQ,wK,wB,wN,wR,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
 
+let gameState = {
+  turn: "w",
+  selectedSquare: null
+}
+
 let pieces = [];
 
 export default class Game extends React.Component {
@@ -15,7 +20,7 @@ export default class Game extends React.Component {
   render() {
     return (
         <div>
-          <Board pieces={pieces}/>
+          <Board gamestate={gameState} pieces={pieces}/>
         </div>
     );
   }

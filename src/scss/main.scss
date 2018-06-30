@@ -21,7 +21,7 @@ div {
     display: table;
 }
 
-.white, .black {
+.white, .black, .clickableWhite, .clickableBlack {
     border: 1px solid #999;
     float: left;
     font-size: 10px;
@@ -35,10 +35,26 @@ div {
     width: 50px;
 }
 
-.white {
+.white, .clickableWhite {
     background: #c2c2c2;
 }
 
-.black {
+.white:hover {
+    background: #d2d2d2;
+}
+
+.clickableWhite {
+    cursor: pointer;
+}
+
+.black, .clickableBlack {
     background: #7e7d80;
+}
+
+.clickableBlack {
+    cursor: pointer;
+}
+
+.black:hover {
+    background: #8e8d90;
 }
