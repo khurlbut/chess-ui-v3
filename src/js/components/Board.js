@@ -6,7 +6,7 @@ let pieces = null;
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    pieces = props.pieces.split(',');
+    pieces = props.pieces;
   }
 
   render() {

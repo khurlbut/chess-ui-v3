@@ -26,7 +26,7 @@ export default class Row extends React.Component {
     let squares = [];
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = s0 + i;
-      squares.push(<Square key={i} boardIndex={thisSquare} piece={pieces[ thisSquare ]} />)
+      squares.push(<Square key={i} boardIndex={thisSquare} piece={pieces[thisSquare]} />)
     }
     return squares;
   }

@@ -17,7 +17,7 @@ export default class Square extends React.Component {
     return (
         <div>
           <button className={color(i)} >
-            <img src={image(p)} className={'piece'} />
+            <img src={p.image} className={'piece'} />
           </button>
         </div>
       );
