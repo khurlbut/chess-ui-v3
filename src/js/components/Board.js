@@ -12,15 +12,16 @@ export default class Board extends React.Component {
   render() {
     return (
       <div>
-        <Row rowNum={7} pieces={pieces} />
-        <Row rowNum={6} pieces={pieces} />
-        <Row rowNum={5} pieces={pieces} />
-        <Row rowNum={4} pieces={pieces} />
-        <Row rowNum={3} pieces={pieces} />
-        <Row rowNum={2} pieces={pieces} />
-        <Row rowNum={1} pieces={pieces} />
-        <Row rowNum={0} pieces={pieces} />
+        {this.rows()}
       </div>
     );
+  }
+
+  rows() {
+    let rows = []
+    for (let i = 7; i >= 0; i--) {
+      rows.push(<Row key={i} rowNum={i} pieces={pieces} />);
+    }
+    return rows;
   }
 }
