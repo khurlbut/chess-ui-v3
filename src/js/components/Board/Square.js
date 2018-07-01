@@ -3,7 +3,10 @@ import style from "./Square/Style"
 
 let i = null;
 let p = null;
+let g = null;
+
 let hasPiece = null;
+let isColorsTurn = null;
 
 export default class Square extends React.Component {
   constructor(props) {
@@ -12,13 +15,16 @@ export default class Square extends React.Component {
 
     i = props.boardIndex;
     p = props.piece;
+    g = props.gamestate;
+
     hasPiece = this.hasPiece(p) ? true : false;
+    isColorsTurn = this.isPieceColorsTurn(p, g) ? true : false;
   }
 
   render() {
     return (
         <div>
-          <button className={style(i, hasPiece)} >
+          <button className={style(i, hasPiece, isColorsTurn)} >
             <img src={p.image} className={'piece'} />
           </button>
         </div>
@@ -32,6 +38,16 @@ export default class Square extends React.Component {
     return false;
   }
 
+  isPieceColorsTurn(p, g) {
+    if (!hasPiece) {
+      return false;
+    }
+
+    let turnColor = g.turn;
+    let pieceColor = p.name.charAt(0);
+
+    return turnColor == pieceColor;
+  }
   validateProps(props) {
     if (props.boardIndex === undefined) {
       throw "attribute boardIndex is required!";

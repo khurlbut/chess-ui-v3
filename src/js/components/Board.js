@@ -2,10 +2,12 @@ import React from "react";
 import Row from "./Board/Row";
 
 let pieces = null;
+let gameState = null;
 
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
+    gameState = props.gamestate;
     pieces = props.pieces;
   }
 
@@ -20,7 +22,7 @@ export default class Board extends React.Component {
   rows() {
     let rows = []
     for (let i = 7; i >= 0; i--) {
-      rows.push(<Row key={i} rowNum={i} pieces={pieces} />);
+      rows.push(<Row key={i} rowNum={i} gamestate={gameState} pieces={pieces} />);
     }
     return rows;
   }

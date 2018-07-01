@@ -3,6 +3,7 @@ import Square from "./Square";
 
 let s0 = 0;
 let pieces = null;
+let gameState = null;
 
 export default class Row extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class Row extends React.Component {
 
     s0 = props.rowNum * 8; // Square 0 in Row
     pieces = props.pieces;
+    gameState = props.gamestate;
   }
 
   render() {
@@ -26,7 +28,7 @@ export default class Row extends React.Component {
     let squares = [];
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = s0 + i;
-      squares.push(<Square key={i} boardIndex={thisSquare} piece={pieces[thisSquare]} />)
+      squares.push(<Square key={i} gamestate={gameState} boardIndex={thisSquare} piece={pieces[thisSquare]} />)
     }
     return squares;
   }

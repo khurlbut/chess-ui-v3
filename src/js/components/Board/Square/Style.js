@@ -3,35 +3,34 @@ import coords from "./Coordinator"
 const WHITE = "white";
 const BLACK = "black";
 const CLICKABLE = {
-  WHITE: "clickableWhite",
-  BLACK: "clickableBlack"
+  white: "clickableWhite",
+  black: "clickableBlack"
 }
 
-function style(boardIndex, hasPiece = false) {
+function style(boardIndex, hasPiece ,isColorsTurn) {
   let [col, row] = coords(boardIndex);
   let evenRow = ((row % 2) === 0);
 
   if (evenRow) {
-    return squareStyle(col + 1, hasPiece);
+    return squareStyle(col + 1, hasPiece, isColorsTurn);
   } else {
-    return squareStyle(col, hasPiece);
+    return squareStyle(col, hasPiece, isColorsTurn);
   }
 }
 
-function squareStyle(col, hasPiece = false) {
+function squareStyle(col, hasPiece, isColorsTurn) {
   let evenCol = ((col % 2) === 0);
+  let squareColor = BLACK;
 
   if (evenCol) {
-    if (hasPiece){
-      return CLICKABLE.WHITE;
-    }
-    return WHITE;
+    squareColor = WHITE;
   }
-  if (hasPiece) {
-    return CLICKABLE.BLACK;
+
+  if (hasPiece && isColorsTurn){
+    return CLICKABLE[squareColor];
   }
-  return BLACK;
+  return squareColor;
 }
 
-module.exports = (boardIndex, hasPiece) => style(boardIndex, hasPiece);
+module.exports = (boardIndex, hasPiece, isColorsTurn) => style(boardIndex, hasPiece, isColorsTurn);
 
