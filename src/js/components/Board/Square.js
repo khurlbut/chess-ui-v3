@@ -1,50 +1,44 @@
 import React from "react";
 import style from "./Square/Style"
 
-let i = null;
-let p = null;
-let g = null;
-
-let hasPiece = null;
-let isColorsTurn = null;
-
 export default class Square extends React.Component {
   constructor(props) {
     super(props);
     this.validateProps(props);
 
-    i = props.boardIndex;
-    p = props.piece;
-    g = props.gamestate;
-
-    hasPiece = this.hasPiece(p) ? true : false;
-    isColorsTurn = this.isPieceColorsTurn(p, g) ? true : false;
+    this.state = {
+      index: props.boardIndex,
+      piece: props.piece,
+      turn: props.turn,
+      hasPiece:this.hasPiece(props.piece) ? true : false,
+      isColorsTurn: this.isPieceColorsTurn()
+    }
   }
 
   render() {
     return (
         <div>
-          <button className={style(i, hasPiece, isColorsTurn)} >
-            <img src={p.image} className={'piece'} />
+          <button className={style(this.state.index, this.state.hasPiece, this.state.isColorsTurn)} >
+            <img src={this.state.piece.image} className={'piece'} />
           </button>
         </div>
       );
   }
 
   hasPiece(p) {
-    if (p.name !== null && p.name !== undefined && p.name.length > 0){
+    if (p != undefined && p.name !== null && p.name !== undefined && p.name.length > 0){
      return true;
     }
     return false;
   }
 
-  isPieceColorsTurn(p, g) {
-    if (!hasPiece) {
+  isPieceColorsTurn() {
+    if (!this.hasPiece()) {
       return false;
     }
 
-    let turnColor = g.turn;
-    let pieceColor = p.name.charAt(0);
+    let turnColor = this.state.turn;
+    let pieceColor = this.state.piece.name.charAt(0);
 
     return turnColor == pieceColor;
   }

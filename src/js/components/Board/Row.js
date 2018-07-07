@@ -1,19 +1,17 @@
 import React from "react";
 import Square from "./Square";
 
-let s0 = 0;
-let pieces = null;
-let gameState = null;
-
 export default class Row extends React.Component {
   constructor(props) {
     super(props);
 
     this.validate(props);
-
-    s0 = props.rowNum * 8; // Square 0 in Row
-    pieces = props.pieces;
-    gameState = props.gamestate;
+    this.state = {
+      s0: props.rowNum * 8,
+      pieces: props.pieces,
+      turn: props.turn,
+      selectedSquare: props.selectedSquare
+    };
   }
 
   render() {
@@ -27,8 +25,8 @@ export default class Row extends React.Component {
   squares() {
     let squares = [];
     for (let i = 0; i < 8 ; i++) {
-      let thisSquare = s0 + i;
-      squares.push(<Square key={i} gamestate={gameState} boardIndex={thisSquare} piece={pieces[thisSquare]} />)
+      let thisSquare = this.state.s0 + i;
+      squares.push(<Square key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.state.pieces[thisSquare]} />)
     }
     return squares;
   }
