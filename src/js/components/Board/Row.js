@@ -7,11 +7,14 @@ export default class Row extends React.Component {
 
     this.validate(props);
     this.state = {
+      handleClick: props.handleClick,
       s0: props.rowNum * 8,
       pieces: props.gamestate.pieces,
       turn: props.gamestate.turn,
       selectedSquare: props.gamestate.selectedSquare
     };
+
+    console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
   }
 
   render() {
@@ -26,7 +29,7 @@ export default class Row extends React.Component {
     let squares = [];
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;
-      squares.push(<Square key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.state.pieces[thisSquare]} />)
+      squares.push(<Square handleClick={this.state.handleClick} key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.state.pieces[thisSquare]} />)
     }
     return squares;
   }
