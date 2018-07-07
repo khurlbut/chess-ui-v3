@@ -8,16 +8,18 @@ export default class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      pieces: this.setPieces(initialSquares),
-      turn: "w",
-      selectedSquare: null
+      gamestate: {
+        pieces: this.setPieces(initialSquares),
+        turn: "w",
+        selectedSquare: null
+      }
     }
   }
 
   render() {
     return (
         <div>
-          <Board turn={this.state.turn} selectedSquare={this.state.selectedSquare} pieces={this.state.pieces}/>
+          <Board gamestate={this.state.gamestate}/>
         </div>
     );
   }

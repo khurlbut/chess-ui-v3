@@ -5,9 +5,7 @@ export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pieces: props.pieces,
-      turn: props.turn,
-      selectedSquare: props.selectedSquare
+      gamestate: props.gamestate
     };
   }
 
@@ -22,7 +20,7 @@ export default class Board extends React.Component {
   rows() {
     let rows = []
     for (let i = 7; i >= 0; i--) {
-      rows.push(<Row key={i} rowNum={i} turn={this.state.turn} selectedSquare={this.state.selectedSquare} pieces={this.state.pieces} />);
+      rows.push(<Row key={i} rowNum={i} gamestate={this.state.gamestate} />);
     }
     return rows;
   }

@@ -8,9 +8,9 @@ export default class Row extends React.Component {
     this.validate(props);
     this.state = {
       s0: props.rowNum * 8,
-      pieces: props.pieces,
-      turn: props.turn,
-      selectedSquare: props.selectedSquare
+      pieces: props.gamestate.pieces,
+      turn: props.gamestate.turn,
+      selectedSquare: props.gamestate.selectedSquare
     };
   }
 
