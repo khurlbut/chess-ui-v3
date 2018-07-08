@@ -9,6 +9,7 @@ export default class Game extends React.Component {
   constructor() {
     super();
     this.state = {
+      errormessage: "",
       gamestate: {
         pieces: this.setPieces(initialSquares),
         turn: "w",
@@ -18,31 +19,44 @@ export default class Game extends React.Component {
   }
 
   handleClick(selectedSquare) {
-    console.log(`something clicked!`);
-
+    let pieces = this.state.gamestate.pieces;
     let previousSelectedSquare = this.state.gamestate.selectedSquare;
+    let errormessage = "";
+
     if (previousSelectedSquare !== null) {
       if (previousSelectedSquare !== selectedSquare) {
-        console.log(`Trying to move from ${previousSelectedSquare} to ${selectedSquare}`);
-        selectedSquare = previousSelectedSquare;
-      } else {
-        selectedSquare = null;
+        let result = this.attemptMove(previousSelectedSquare, selectedSquare);
+        if (result.success) {
+          pieces = result.pieces;
+        } else {
+          errormessage = result.errorMessage;
+        }
       }
+      selectedSquare = null;
     }
 
     this.setState({
+      errormessage: errormessage,
       gamestate: {
-        pieces : this.setPieces(afterFirstMoveSquares),
+        pieces : pieces,
         turn: "w",
         selectedSquare: selectedSquare
       }
     });
   }
 
+  attemptMove(from, to) {
+    if (from === 8 && to === 16) {
+      return {success: true, pieces: this.setPieces(afterFirstMoveSquares)};
+    }
+    return {success: false, errorMessage: "That is not a valid move..."};
+  }
+
   render() {
     return (
         <div>
           <Board handleClick={this.handleClick.bind(this)} gamestate={this.state.gamestate}/>
+          <div>{this.state.errormessage}</div>
         </div>
     );
   }
