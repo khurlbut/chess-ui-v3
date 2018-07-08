@@ -11,7 +11,7 @@ export default class Game extends React.Component {
     this.state = {
       gamestate: {
         pieces: this.setPieces(initialSquares),
-        turn: "w",
+        turn: "w"
       }
     }
   }

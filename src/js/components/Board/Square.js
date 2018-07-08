@@ -13,11 +13,6 @@ export default class Square extends React.Component {
   }
 
   handleClick() {
-    let piece = this.props.piece;
-    let turn = this.props.turn;
-    console.log(`Square.handleClick() piece: ${JSON.stringify(piece)}`);
-    console.log(`Square.handleClick() hasPiece: ${this.hasPiece(piece)}`);
-    console.log(`Square.handleClick() isColorsTurn: ${this.isPieceColorsTurn(piece, turn)}`);
     this.props.handleClick(this.state.index);
   }
 
