@@ -1,5 +1,7 @@
 import React from "react";
-import Board from "./Board";
+import Board2 from "./Board2";
+import Row2 from "./Board/Row2"
+import Square from "./Board/Square";
 import image from "./Piece/ImageMapper";
 
 const initialSquares = "wR,wN,wB,wQ,wK,wB,wN,wR,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
@@ -8,10 +10,13 @@ const afterFirstMoveSquares = "wR,wN,wB,wQ,wK,wB,wN,wR,,wP,wP,wP,wP,wP,wP,wP,wP,
 export default class Game extends React.Component {
   constructor() {
     super();
+
+    console.log(`Game`)
+    let pieces = this.setPieces(initialSquares);
+
     this.state = {
       gamestate: {
-        toggle: 0,
-        pieces: this.setPieces(initialSquares),
+        pieces: pieces,
         turn: "w",
         selectedSquare: null
       }
@@ -31,10 +36,11 @@ export default class Game extends React.Component {
   }
 
   render() {
+    console.log(`Game.render()`);
     return (
         <div>
           {this.state.gamestate.toggle}
-          <Board handleClick={this.handleClick.bind(this)} gamestate={this.state.gamestate}/>
+          <Board2 rows={this.rows()} handleClick={this.handleClick.bind(this)} gamestate={this.state.gamestate}/>
         </div>
     );
   }
@@ -50,4 +56,25 @@ export default class Game extends React.Component {
     }
     return pieces;
   }
+
+  rows() {
+    console.log(`Game.rows()`);
+    let rows = []
+    for (let i = 7; i >= 0; i--) {
+      rows.push(<Row2 handleClick={this.handleClick.bind(this)} squares={this.squares(i)} key={i} rowNum={i} gamestate={this.state.gamestate} />);
+    }
+    return rows;
+  }
+
+  squares(row) {
+    console.log(`Game.squares()`);
+    let s0 = row * 8;
+    let squares = [];
+    for (let i = 0; i < 8 ; i++) {
+      let thisSquare = s0 + i;
+      squares.push(<Square handleClick={this.handleClick.bind(this)} key={i} boardIndex={thisSquare} turn={this.state.gamestate.turn} piece={this.state.gamestate.pieces[thisSquare]} />)
+    }
+    return squares;
+  }
+
 }

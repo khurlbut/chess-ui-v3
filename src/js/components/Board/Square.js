@@ -25,6 +25,7 @@ export default class Square extends React.Component {
   }
 
   render() {
+    console.log(`Square.render()`);
     return (
         <div>
           <button onClick={this.handleClick.bind(this)} className={style(this.state.index, this.state.hasPiece, this.state.isColorsTurn)} >

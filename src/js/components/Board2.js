@@ -1,28 +1,23 @@
 import React from "react";
 import Row from "./Board/Row";
 
-export default class Board extends React.Component {
+export default class Board2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rows: props.rows,
       handleClick: props.handleClick,
       gamestate: props.gamestate
     };
   }
 
   render() {
+    console.log(`Board2.render()`);
     return (
       <div>
-        {this.rows()}
+        {this.state.rows}
       </div>
     );
   }
 
-  rows() {
-    let rows = []
-    for (let i = 7; i >= 0; i--) {
-      rows.push(<Row handleClick={this.state.handleClick} key={i} rowNum={i} gamestate={this.state.gamestate} />);
-    }
-    return rows;
-  }
 }

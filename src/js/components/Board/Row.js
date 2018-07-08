@@ -14,10 +14,11 @@ export default class Row extends React.Component {
       selectedSquare: props.gamestate.selectedSquare
     };
 
-    console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
+    // console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
   }
 
   render() {
+    console.log(`Render Row!`)
     return (
       <div className="board-row">
         {this.squares()}
