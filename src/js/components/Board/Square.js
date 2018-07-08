@@ -10,10 +10,6 @@ export default class Square extends React.Component {
       isSelected: false,
       handleClick: props.handleClick,
       index: props.boardIndex,
-      piece: props.piece,
-      turn: props.turn,
-      hasPiece:this.hasPiece(props.piece) ? true : false,
-      isColorsTurn: this.isPieceColorsTurn()
     }
 
     if (this.state.index === 8) {
@@ -29,10 +25,16 @@ export default class Square extends React.Component {
 
   render() {
     console.log(`Square.render()`);
+    let index = this.state.index;
+    let piece = this.props.piece;
+    let image = piece.image;
+    let hasPiece = this.hasPiece(piece);
+    let isColorsTurn = this.state.isColorsTurn;
+
     return (
         <div>
-          <button onClick={this.handleClick.bind(this)} className={style(this.state.index, this.hasPiece(this.props.piece), this.state.isColorsTurn)} >
-            <img src={this.props.piece.image} className={'piece'} />
+          <button onClick={this.handleClick.bind(this)} className={style(index, hasPiece, isColorsTurn)} >
+            <img src={image} className={'piece'} />
           </button>
         </div>
       );
@@ -55,6 +57,7 @@ export default class Square extends React.Component {
 
     return turnColor == pieceColor;
   }
+
   validateProps(props) {
     if (props.boardIndex === undefined) {
       throw "attribute boardIndex is required!";
