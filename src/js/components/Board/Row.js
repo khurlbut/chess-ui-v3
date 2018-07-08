@@ -24,13 +24,16 @@ export default class Row extends React.Component {
     let squares = [];
     let turn = this.props.gamestate.turn;
     let pieces = this.props.gamestate.pieces;
+    let selectedSquare = this.props.gamestate.selectedSquare;
+
     let clickHandler = this.props.handleClick;
 
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;
       let thisPiece = pieces[thisSquare];
+      let isSelected = (selectedSquare !== null && selectedSquare === thisSquare) ? true : false;
 
-      squares.push(<Square handleClick={clickHandler} key={thisSquare} boardIndex={thisSquare} turn={turn} piece={thisPiece} />)
+      squares.push(<Square handleClick={clickHandler} key={thisSquare} boardIndex={thisSquare} turn={turn} piece={thisPiece} isSelected={isSelected}/>)
     }
     return squares;
   }

@@ -11,17 +11,20 @@ export default class Game extends React.Component {
     this.state = {
       gamestate: {
         pieces: this.setPieces(initialSquares),
-        turn: "w"
+        turn: "w",
+        selectedSquare: null
       }
     }
   }
 
   handleClick(selectedSquare) {
     console.log(`something clicked!`);
+
     this.setState({
       gamestate: {
         pieces : this.setPieces(afterFirstMoveSquares),
-        turn: "w"
+        turn: "w",
+        selectedSquare: selectedSquare
       }
     });
   }

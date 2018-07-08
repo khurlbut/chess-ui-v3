@@ -7,7 +7,11 @@ const CLICKABLE = {
   black: "clickableBlack"
 }
 
-function style(boardIndex, hasPiece ,isColorsTurn) {
+function style(isSelected, boardIndex, hasPiece, isColorsTurn) {
+  if (isSelected) {
+    return "highlighted";
+  }
+
   let [col, row] = coords(boardIndex);
   let evenRow = ((row % 2) === 0);
 
@@ -32,5 +36,5 @@ function squareStyle(col, hasPiece, isColorsTurn) {
   return squareColor;
 }
 
-module.exports = (boardIndex, hasPiece, isColorsTurn) => style(boardIndex, hasPiece, isColorsTurn);
+module.exports = (isSelected, boardIndex, hasPiece, isColorsTurn) => style(isSelected, boardIndex, hasPiece, isColorsTurn);
 
