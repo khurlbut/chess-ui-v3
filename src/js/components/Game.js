@@ -18,11 +18,11 @@ export default class Game extends React.Component {
     }
   }
 
-  handleClick() {
+  handleClick(selectedSquare) {
     console.log(`something clicked!`);
     this.setState({
       gamestate: {
-        toggle: 1,
+        selectedSquare: selectedSquare,
         pieces : this.setPieces(afterFirstMoveSquares)
       }
     });

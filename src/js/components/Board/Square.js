@@ -7,6 +7,7 @@ export default class Square extends React.Component {
     this.validateProps(props);
 
     this.state = {
+      isSelected: false,
       handleClick: props.handleClick,
       index: props.boardIndex,
       piece: props.piece,
@@ -21,14 +22,17 @@ export default class Square extends React.Component {
   }
 
   handleClick() {
-    this.props.handleClick();
+    console.log(`Square.handleClick()`)
+    // this.setState({isSelected: true});
+    this.props.handleClick(this.state.index);
   }
 
   render() {
+    console.log(`Square.render()`);
     return (
         <div>
-          <button onClick={this.handleClick.bind(this)} className={style(this.state.index, this.state.hasPiece, this.state.isColorsTurn)} >
-            <img src={this.state.piece.image} className={'piece'} />
+          <button onClick={this.handleClick.bind(this)} className={style(this.state.index, this.hasPiece(this.props.piece), this.state.isColorsTurn)} >
+            <img src={this.props.piece.image} className={'piece'} />
           </button>
         </div>
       );

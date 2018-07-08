@@ -5,6 +5,7 @@ export default class Row extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(`Row.constructor()`);
     this.validate(props);
     this.state = {
       handleClick: props.handleClick,
@@ -14,10 +15,18 @@ export default class Row extends React.Component {
       selectedSquare: props.gamestate.selectedSquare
     };
 
-    console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
+    // console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
+  }
+
+  handleClick(selectedSquare) {
+    console.log(`Row.handleClick() selectedSquare: ${selectedSquare}`);
+    this.setState({selectedSquare: selectedSquare});
+    this.props.handleClick(selectedSquare);
   }
 
   render() {
+    console.log(`Row.render()`);
+    console.log(`props.gamestate.pieces: ${JSON.stringify(this.props.gamestate.pieces)}`);
     return (
       <div className="board-row">
         {this.squares()}
@@ -26,10 +35,11 @@ export default class Row extends React.Component {
   }
 
   squares() {
+    console.log(`Row.squares()`);
     let squares = [];
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;
-      squares.push(<Square handleClick={this.state.handleClick} key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.state.pieces[thisSquare]} />)
+      squares.push(<Square handleClick={this.handleClick.bind(this)} key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.props.gamestate.pieces[thisSquare]} />)
     }
     return squares;
   }

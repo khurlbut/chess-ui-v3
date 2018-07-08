@@ -10,6 +10,16 @@ export default class Board extends React.Component {
     };
   }
 
+  handleClick(selectedSquare) {
+    console.log(`Board.handleClick() selectedSquare: ${selectedSquare}`);
+    this.setState({
+      gamestate: {
+        selectedSquare: selectedSquare
+      }
+    });
+    this.props.handleClick(selectedSquare);
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +31,7 @@ export default class Board extends React.Component {
   rows() {
     let rows = []
     for (let i = 7; i >= 0; i--) {
-      rows.push(<Row handleClick={this.state.handleClick} key={i} rowNum={i} gamestate={this.state.gamestate} />);
+      rows.push(<Row handleClick={this.handleClick.bind(this)} key={i} rowNum={i} gamestate={this.props.gamestate} />);
     }
     return rows;
   }
