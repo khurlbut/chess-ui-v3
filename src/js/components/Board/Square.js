@@ -7,28 +7,30 @@ export default class Square extends React.Component {
     this.validateProps(props);
 
     this.state = {
-      handleClick: props.handleClick,
       index: props.boardIndex,
-      piece: props.piece,
-      turn: props.turn,
-      hasPiece:this.hasPiece(props.piece) ? true : false,
-      isColorsTurn: this.isPieceColorsTurn()
-    }
-
-    if (this.state.index === 8) {
-      console.log(`Square 8`)
     }
   }
 
   handleClick() {
-    this.props.handleClick();
+    this.props.handleClick(this.state.index);
   }
 
   render() {
+    let index = this.state.index;
+    let piece = this.props.piece;
+    let turn = this.props.turn;
+
+    let image = piece.image;
+    let hasPiece = this.hasPiece(piece);
+    let isColorsTurn = this.isPieceColorsTurn(piece, turn);
+    let squareStyle = style(index, hasPiece, isColorsTurn);
+
+    let clickHandler = this.handleClick.bind(this);
+
     return (
         <div>
-          <button onClick={this.handleClick.bind(this)} className={style(this.state.index, this.state.hasPiece, this.state.isColorsTurn)} >
-            <img src={this.state.piece.image} className={'piece'} />
+          <button onClick={clickHandler} className={squareStyle} >
+            <img src={image} className={'piece'} />
           </button>
         </div>
       );
@@ -41,16 +43,15 @@ export default class Square extends React.Component {
     return false;
   }
 
-  isPieceColorsTurn() {
-    if (!this.hasPiece()) {
+  isPieceColorsTurn(p, turnColor) {
+    if (!this.hasPiece(p)) {
       return false;
     }
-
-    let turnColor = this.state.turn;
-    let pieceColor = this.state.piece.name.charAt(0);
+    let pieceColor = p.name.charAt(0);
 
     return turnColor == pieceColor;
   }
+
   validateProps(props) {
     if (props.boardIndex === undefined) {
       throw "attribute boardIndex is required!";

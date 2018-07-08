@@ -6,15 +6,10 @@ export default class Row extends React.Component {
     super(props);
 
     this.validate(props);
-    this.state = {
-      handleClick: props.handleClick,
-      s0: props.rowNum * 8,
-      pieces: props.gamestate.pieces,
-      turn: props.gamestate.turn,
-      selectedSquare: props.gamestate.selectedSquare
-    };
 
-    console.log(`pieces: ${JSON.stringify(this.state.pieces)}`)
+    this.state = {
+      s0: props.rowNum * 8
+    };
   }
 
   render() {
@@ -27,9 +22,15 @@ export default class Row extends React.Component {
 
   squares() {
     let squares = [];
+    let turn = this.props.gamestate.turn;
+    let pieces = this.props.gamestate.pieces;
+    let clickHandler = this.props.handleClick;
+
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;
-      squares.push(<Square handleClick={this.state.handleClick} key={i} boardIndex={thisSquare} turn={this.state.turn} piece={this.state.pieces[thisSquare]} />)
+      let thisPiece = pieces[thisSquare];
+
+      squares.push(<Square handleClick={clickHandler} key={thisSquare} boardIndex={thisSquare} turn={turn} piece={thisPiece} />)
     }
     return squares;
   }
@@ -38,7 +39,7 @@ export default class Row extends React.Component {
     if (props.rowNum === undefined) {
       throw "attribute rowNum is required!";
     }
-    if (props.rowNum < 0 || props.rowNum > (8 - 1)) {
+    if (props.rowNum < 0 || props.rowNum > 7) {
       throw "rowNum must be between 0 and 7!"
     }
   }

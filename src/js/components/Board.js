@@ -4,10 +4,6 @@ import Row from "./Board/Row";
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      handleClick: props.handleClick,
-      gamestate: props.gamestate
-    };
   }
 
   render() {
@@ -19,9 +15,12 @@ export default class Board extends React.Component {
   }
 
   rows() {
-    let rows = []
+    let rows = [];
+    let gamestate = this.props.gamestate;
+    let clickHandler = this.props.handleClick;
+
     for (let i = 7; i >= 0; i--) {
-      rows.push(<Row handleClick={this.state.handleClick} key={i} rowNum={i} gamestate={this.state.gamestate} />);
+      rows.push(<Row handleClick={clickHandler} key={i} rowNum={i} gamestate={gamestate} />);
     }
     return rows;
   }
