@@ -12,11 +12,6 @@ export default class Board extends React.Component {
 
   handleClick(selectedSquare) {
     console.log(`Board.handleClick() selectedSquare: ${selectedSquare}`);
-    // this.setState({
-    //   gamestate: {
-    //     selectedSquare: selectedSquare
-    //   }
-    // });
     this.props.handleClick(selectedSquare);
   }
 

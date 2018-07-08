@@ -11,10 +11,6 @@ export default class Square extends React.Component {
       index: props.boardIndex,
       isSelected: false,
     }
-
-    // if (this.state.index === 8) {
-    //   console.log(`Square 8`)
-    // }
   }
 
   handleClick() {
@@ -24,7 +20,6 @@ export default class Square extends React.Component {
   }
 
   render() {
-    console.log(`Square.render()`);
     let index = this.state.index;
     let piece = this.props.piece;
     let image = piece.image;
