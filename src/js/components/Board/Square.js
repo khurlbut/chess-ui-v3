@@ -9,22 +9,26 @@ export default class Square extends React.Component {
     this.state = {
       handleClick: props.handleClick,
       index: props.boardIndex,
-      isSelected: false,
     }
   }
 
   handleClick() {
-    console.log(`Square.handleClick()`)
-    this.setState({isSelected: true});
+    let piece = this.props.piece;
+    let turn = this.props.turn;
+    console.log(`Square.handleClick() piece: ${JSON.stringify(piece)}`);
+    console.log(`Square.handleClick() hasPiece: ${this.hasPiece(piece)}`);
+    console.log(`Square.handleClick() isColorsTurn: ${this.isPieceColorsTurn(piece, turn)}`);
     this.props.handleClick(this.state.index);
   }
 
   render() {
     let index = this.state.index;
     let piece = this.props.piece;
+    let turn = this.props.turn;
+
     let image = piece.image;
     let hasPiece = this.hasPiece(piece);
-    let isColorsTurn = this.state.isColorsTurn;
+    let isColorsTurn = this.isPieceColorsTurn(piece, turn);
     let clickHandler = this.handleClick.bind(this);
     let squareStyle = style(index, hasPiece, isColorsTurn);
 
@@ -44,13 +48,11 @@ export default class Square extends React.Component {
     return false;
   }
 
-  isPieceColorsTurn() {
-    if (!this.hasPiece()) {
+  isPieceColorsTurn(p, turnColor) {
+    if (!this.hasPiece(p)) {
       return false;
     }
-
-    let turnColor = this.props.turn;
-    let pieceColor = this.props.piece.name.charAt(0);
+    let pieceColor = p.name.charAt(0);
 
     return turnColor == pieceColor;
   }

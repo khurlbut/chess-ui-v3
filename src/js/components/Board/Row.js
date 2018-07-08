@@ -33,6 +33,7 @@ export default class Row extends React.Component {
     let pieces = this.props.gamestate.pieces;
     let clickHandler = this.handleClick.bind(this);
 
+    console.log(`Row.squares turn: ${turn}`);
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;
       let thisPiece = pieces[thisSquare];

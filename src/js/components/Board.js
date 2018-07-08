@@ -26,6 +26,7 @@ export default class Board extends React.Component {
   rows() {
     let rows = [];
     let gamestate = this.props.gamestate;
+    console.log(`Board.rows gamestate.turn: ${gamestate.turn}`)
     let clickHandler = this.handleClick.bind(this);
 
     for (let i = 7; i >= 0; i--) {

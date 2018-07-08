@@ -10,10 +10,8 @@ export default class Game extends React.Component {
     super();
     this.state = {
       gamestate: {
-        toggle: 0,
         pieces: this.setPieces(initialSquares),
         turn: "w",
-        selectedSquare: null
       }
     }
   }
@@ -22,18 +20,15 @@ export default class Game extends React.Component {
     console.log(`something clicked!`);
     this.setState({
       gamestate: {
-        selectedSquare: selectedSquare,
-        pieces : this.setPieces(afterFirstMoveSquares)
+        pieces : this.setPieces(afterFirstMoveSquares),
+        turn: "w"
       }
     });
-    // console.log(`this.state.gamestate.toggle: ${this.state.gamestate.toggle}`)
-    // console.log(`this.state.gamestate.pieces: ${JSON.stringify(this.state.gamestate.pieces)}`);
   }
 
   render() {
     return (
         <div>
-          {this.state.gamestate.toggle}
           <Board handleClick={this.handleClick.bind(this)} gamestate={this.state.gamestate}/>
         </div>
     );
