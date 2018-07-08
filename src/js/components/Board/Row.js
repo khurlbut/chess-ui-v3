@@ -8,15 +8,8 @@ export default class Row extends React.Component {
     this.validate(props);
 
     this.state = {
-      handleClick: props.handleClick,
       s0: props.rowNum * 8
     };
-  }
-
-  handleClick(selectedSquare) {
-    console.log(`Row.handleClick() selectedSquare: ${selectedSquare}`);
-    this.setState({selectedSquare: selectedSquare});
-    this.props.handleClick(selectedSquare);
   }
 
   render() {
@@ -31,7 +24,7 @@ export default class Row extends React.Component {
     let squares = [];
     let turn = this.props.gamestate.turn;
     let pieces = this.props.gamestate.pieces;
-    let clickHandler = this.handleClick.bind(this);
+    let clickHandler = this.props.handleClick;
 
     for (let i = 0; i < 8 ; i++) {
       let thisSquare = this.state.s0 + i;

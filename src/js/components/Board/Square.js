@@ -7,7 +7,6 @@ export default class Square extends React.Component {
     this.validateProps(props);
 
     this.state = {
-      handleClick: props.handleClick,
       index: props.boardIndex,
     }
   }
@@ -24,8 +23,9 @@ export default class Square extends React.Component {
     let image = piece.image;
     let hasPiece = this.hasPiece(piece);
     let isColorsTurn = this.isPieceColorsTurn(piece, turn);
-    let clickHandler = this.handleClick.bind(this);
     let squareStyle = style(index, hasPiece, isColorsTurn);
+
+    let clickHandler = this.handleClick.bind(this);
 
     return (
         <div>
