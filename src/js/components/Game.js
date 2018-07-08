@@ -20,6 +20,16 @@ export default class Game extends React.Component {
   handleClick(selectedSquare) {
     console.log(`something clicked!`);
 
+    let previousSelectedSquare = this.state.gamestate.selectedSquare;
+    if (previousSelectedSquare !== null) {
+      if (previousSelectedSquare !== selectedSquare) {
+        console.log(`Trying to move from ${previousSelectedSquare} to ${selectedSquare}`);
+        selectedSquare = previousSelectedSquare;
+      } else {
+        selectedSquare = null;
+      }
+    }
+
     this.setState({
       gamestate: {
         pieces : this.setPieces(afterFirstMoveSquares),
