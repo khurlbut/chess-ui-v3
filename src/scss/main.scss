@@ -21,7 +21,7 @@ div {
     display: table;
 }
 
-.white, .black, .clickableWhite, .clickableBlack, .highlighted {
+.white, .black, .clickableWhite, .clickableBlack, .selected, .highlighted {
     border: 1px solid #999;
     float: left;
     font-size: 10px;
@@ -59,6 +59,10 @@ div {
     background: #8e8d90;
 }
 
-.highlighted {
+.selected {
     background: #f2bae0;
+}
+
+.highlighted {
+    background: #3200ff;
 }

@@ -3,7 +3,8 @@ import Board from "./Board";
 import image from "./Piece/ImageMapper";
 
 const initialSquares = "wR,wN,wB,wQ,wK,wB,wN,wR,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
-const afterFirstMoveSquares = "wR,wN,wB,wQ,wK,wB,wN,wR,,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
+const squaresAfterA2movedToA3 = "wR,wN,wB,wQ,wK,wB,wN,wR,,wP,wP,wP,wP,wP,wP,wP,wP,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,bP,bP,bP,bP,bP,bP,bP,bP,bR,bN,bB,bQ,bK,bB,bN,bR";
+const moveToSquaresForA2 = "16,24";
 
 export default class Game extends React.Component {
   constructor() {
@@ -13,17 +14,20 @@ export default class Game extends React.Component {
       gamestate: {
         pieces: this.setPieces(initialSquares),
         turn: "w",
-        selectedSquare: null
+        selectedSquare: null,
+        moveToSquares: null
       }
     }
   }
 
   handleClick(selectedSquare) {
+    let errormessage = "";
     let pieces = this.state.gamestate.pieces;
     let previousSelectedSquare = this.state.gamestate.selectedSquare;
-    let errormessage = "";
+    let moveToSquares = null;
 
     if (previousSelectedSquare !== null) {
+
       if (previousSelectedSquare !== selectedSquare) {
         let result = this.attemptMove(previousSelectedSquare, selectedSquare);
         if (result.success) {
@@ -32,7 +36,11 @@ export default class Game extends React.Component {
           errormessage = result.errorMessage;
         }
       }
+
       selectedSquare = null;
+
+    } else {
+      moveToSquares = this.findMoveToSquares(selectedSquare);
     }
 
     this.setState({
@@ -40,16 +48,24 @@ export default class Game extends React.Component {
       gamestate: {
         pieces : pieces,
         turn: "w",
-        selectedSquare: selectedSquare
+        selectedSquare: selectedSquare,
+        moveToSquares: moveToSquares
       }
     });
   }
 
   attemptMove(from, to) {
     if (from === 8 && to === 16) {
-      return {success: true, pieces: this.setPieces(afterFirstMoveSquares)};
+      return {success: true, pieces: this.setPieces(squaresAfterA2movedToA3)};
     }
     return {success: false, errorMessage: "That is not a valid move..."};
+  }
+
+  findMoveToSquares(from) {
+    if (from === 8) {
+      return new Set(moveToSquaresForA2.split(','));
+    }
+    return new Set();
   }
 
   render() {

@@ -20,11 +20,12 @@ export default class Square extends React.Component {
     let piece = this.props.piece;
     let turn = this.props.turn;
     let isSelected = this.props.isSelected;
+    let isHighlighted = this.props.isHighlighted;
 
     let image = piece.image;
     let hasPiece = this.hasPiece(piece);
     let isColorsTurn = this.isPieceColorsTurn(piece, turn);
-    let squareStyle = style(isSelected, index, hasPiece, isColorsTurn);
+    let squareStyle = style(isSelected, isHighlighted, index, hasPiece, isColorsTurn);
 
     let clickHandler = this.handleClick.bind(this);
 

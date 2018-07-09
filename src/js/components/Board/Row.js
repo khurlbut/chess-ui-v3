@@ -25,6 +25,7 @@ export default class Row extends React.Component {
     let turn = this.props.gamestate.turn;
     let pieces = this.props.gamestate.pieces;
     let selectedSquare = this.props.gamestate.selectedSquare;
+    let highlightedSquares = this.props.gamestate.moveToSquares;
 
     let clickHandler = this.props.handleClick;
 
@@ -32,8 +33,9 @@ export default class Row extends React.Component {
       let thisSquare = this.state.s0 + i;
       let thisPiece = pieces[thisSquare];
       let isSelected = (selectedSquare !== null && selectedSquare === thisSquare) ? true : false;
+      let isHighlighted = (highlightedSquares != null && highlightedSquares.has(thisSquare.toString())) ? true : false;
 
-      squares.push(<Square handleClick={clickHandler} key={thisSquare} boardIndex={thisSquare} turn={turn} piece={thisPiece} isSelected={isSelected}/>)
+      squares.push(<Square handleClick={clickHandler} key={thisSquare} boardIndex={thisSquare} turn={turn} piece={thisPiece} isSelected={isSelected} isHighlighted={isHighlighted}/>)
     }
     return squares;
   }
