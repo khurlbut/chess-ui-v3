@@ -30,12 +30,10 @@ export default class Square extends React.Component {
     let clickHandler = this.handleClick.bind(this);
 
     return (
-        <div>
-          <button onClick={clickHandler} className={squareStyle} >
-            <img src={image} className={'piece'} />
-          </button>
-        </div>
-      );
+      <div onClick={clickHandler} className={squareStyle} >
+        <img src={image} className={'piece'} />
+      </div>
+    );
   }
 
   hasPiece(p) {
