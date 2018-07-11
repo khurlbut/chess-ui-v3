@@ -21,6 +21,18 @@ div {
     display: table;
 }
 
+.board-background {
+    height: 500px;
+    width: 500px;
+    background: #000000
+}
+
+.board-wrapper {
+    height: 400px;
+    width: 400px;
+    margin: auto;
+}
+
 .white, .black, .clickableWhite, .clickableBlack, .selected, .highlighted {
     border: 2px solid #999;
     float: left;

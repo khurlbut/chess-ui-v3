@@ -8,9 +8,11 @@ export default class Board extends React.Component {
 
   render() {
     return (
-      <div>
+        <div className={'board-background'}>
+      <div className={'.board-wrapper'}>
         {this.rows()}
       </div>
+        </div>
     );
   }
 
